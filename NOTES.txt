@@ -1,0 +1,39 @@
+./pack/plugins/start/ale/ale_linters/javascript/tsserver.vim
+./pack/plugins/start/ale/ale_linters/javascript/jshint.vim
+./pack/plugins/start/ale/autoload/ale/fixers/prettier.vim
+
+# How to add a fixer?
+
+DO NOT use hyphens in the file name!! `ajscript_fmt.vim` vs `ajscript-fmt.vim`
+
+See <https://github.com/dense-analysis/ale/pull/4427/files>
+
+`autoload/ale/fix/registry.vim`
+
+# ale#fix#registry#Add(name, func, filetypes, desc, ...)
+ale#fix#registry#Add(
+\  'ajscript-fmt',
+\  'ale#fixers#ajscript_fmt#Fix',
+\  ['javascript', 'ajscript'],
+\  'Apply AJScript format to a file.'
+\)
+
+
+\   'ajscript-fmt': {
+\       'function': 'ale#fixers#ajscript_fmt#Fix',
+\       'suggested_filetypes': ['javascript', 'ajscript'],
+\       'description': 'Apply AJScript format to a file.',
+\   },
+
+
+    " %t means current filename (says gpt)
+    " %h means dirname (head)
+    " %t means filename (tail)
+
+
+function! ale#fixers#ajscript_fmt#GetCwd(buffer) abort
+    let l:config = ale#path#FindNearestFile(a:buffer, '.ajscript.json')
+
+    " Fall back to the directory of the buffer
+    return !empty(l:config) ? fnamemodify(l:config, ':h') : '%s:h'
+endfunction
