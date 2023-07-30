@@ -2,6 +2,18 @@
 ./pack/plugins/start/ale/ale_linters/javascript/jshint.vim
 ./pack/plugins/start/ale/autoload/ale/fixers/prettier.vim
 
+# vimscript 101
+
+```text
+' string
+['a', 'b'] list
+{ 'key': 'value' } map
+" comment
+\ escape previous newline+whitespace
+# filepath
+TitleCase function name
+```
+
 # How to add a fixer?
 
 DO NOT use hyphens in the file name!! `ajscript_fmt.vim` vs `ajscript-fmt.vim`
@@ -26,9 +38,13 @@ ale#fix#registry#Add(
 \   },
 
 
+    " g: global var
+    " a: function argument
+    " b: ?? variable
+    " l: function-local variable
     " %t means current filename (says gpt)
-    " %h means dirname (head)
-    " %t means filename (tail)
+    " :h means dirname (head)
+    " :t means filename (tail)
 
 
 function! ale#fixers#ajscript_fmt#GetCwd(buffer) abort
