@@ -4,6 +4,12 @@ Building Ai-Jit-Script (my own programming language).
 
 The vim integration comes first, then the tooling, then the language.
 
+# Status
+
+Currently just a "Hello, World"-style vim-ale "fixer" (fmt).
+
+# Install
+
 1. Install [`ajscript-fmt`]
   ```sh
   curl -fsSL https://raw.githubusercontent.com/coolaj86/wip-ajscript-cli/main/bin/ajscript-fmt \
